@@ -29,6 +29,17 @@ harvestBeneficiaryPercentage = {{ combined_net_config['harvest_beneficiary_perce
 blockPruneInterval = {{ combined_net_config['block_prune_interval'] }}
 maxTransactionsPerBlock = {{ combined_net_config['max_transactions_per_block'] }}
 
+enableUndoBlock = {{ combined_net_config['enable_undo_block'] | lower }}
+enableBlockSync = {{ combined_net_config['enable_block_sync'] | lower }}
+
+enableWeightedVoting = {{ combined_net_config['enable_weighted_voting'] | lower }}
+committeeSize = {{ combined_net_config['committee_size'] }}
+committeeApproval = {{ combined_net_config['committee_approval'] }}
+committeePhaseTime = {{ combined_net_config['committee_phase_time'] }}
+minCommitteePhaseTime = {{ combined_net_config['min_committee_phase_time'] }}
+committeePrecommitWait = {{ combined_net_config['committee_precommit_wait'] }}
+committeeTimeAdjustment = {{ combined_net_config['committee_time_adjustment'] }}
+
 [plugin:catapult.plugins.accountlink]
 
 dummy = {{ combined_net_config['dummy'] }}
@@ -44,6 +55,17 @@ enableBondedAggregateSupport = {{ combined_net_config['enable_bonded_aggregate_s
 
 maxBondedTransactionLifetime = {{ combined_net_config['max_bonded_transaction_lifetime'] }}
 strictSigner = {{ combined_net_config['strict_signer'] | lower }}
+
+[plugin:catapult.plugins.committee]
+
+enabled = {{ combined_net_config['plugin_committee_enabled'] | lower }}
+
+minGreed = {{ combined_net_config['committee_min_greed'] }}
+
+initialActivity = {{ combined_net_config['committee_initial_activity'] }}
+activityDelta = {{ combined_net_config['committee_activity_delta'] }}
+activityCommitteeCosignedDelta = {{ combined_net_config['activity_committee_cosigned_delta'] }}
+activityCommitteeNotCosignedDelta = {{ combined_net_config['activity_committee_not_cosigned_delta'] }}
 
 [plugin:catapult.plugins.config]
 

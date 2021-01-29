@@ -79,6 +79,7 @@ default_db_config:
   max_writer_threads: 8
   catapult_mongo_plugins_accountlink: true
   catapult_mongo_plugins_aggregate: true
+  catapult_mongo_plugins_committee: true
   catapult_mongo_plugins_config: true
   catapult_mongo_plugins_contract: true
   catapult_mongo_plugins_exchange: true
@@ -146,6 +147,7 @@ default_ext_server_config:
   extension_timesync: true
   extension_transactionsink: true
   extension_unbondedpruning: true
+  extension_fastfinality: true
 
 #------------------------------------
 # config-harvesting.properties.j2 - hv_config['key']
@@ -255,6 +257,17 @@ default_net_config:
   block_prune_interval: 360
   max_transactions_per_block: 200'000
 
+  enable_undo_block: false
+  enable_block_sync: false
+
+  enable_weighted_voting: true
+  committee_size: 21
+  committee_approval: 0.67
+  committee_phase_time: 5s
+  min_committee_phase_time: 300ms
+  committee_precommit_wait: 0.8
+  committee_time_adjustment: 1.1
+
   # [plugin:catapult.plugins.accountlink]
   dummy: to trigger plugin load
 
@@ -268,6 +281,17 @@ default_net_config:
 
   max_bonded_transaction_lifetime: 48h
   strict_signer: true
+
+  # [plugin:catapult.plugins.committee]
+
+  plugin_committee_enabled: true
+
+  committee_min_greed: 0.1
+
+  committee_initial_activity: 0.367976785
+  committee_activity_delta: 0.00001
+  activity_committee_cosigned_delta: 0.01
+  activity_committee_not_cosigned_delta: 0.02
 
   #[plugin:catapult.plugins.config]
   max_block_chain_config_size: 1MB

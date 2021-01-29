@@ -9,6 +9,7 @@ maxWriterThreads = {{ combined_db_config['max_writer_threads'] }}
 
 catapult.mongo.plugins.accountlink = {{ combined_db_config['catapult_mongo_plugins_accountlink'] | lower }}
 catapult.mongo.plugins.aggregate = {{ combined_db_config['catapult_mongo_plugins_aggregate'] | lower }}
+catapult.mongo.plugins.committee = {{ combined_db_config['catapult_mongo_plugins_committee'] | lower }}
 catapult.mongo.plugins.config = {{ combined_db_config['catapult_mongo_plugins_config'] | lower }}
 catapult.mongo.plugins.contract = {{ combined_db_config['catapult_mongo_plugins_contract'] | lower }}
 catapult.mongo.plugins.exchange = {{ combined_db_config['catapult_mongo_plugins_exchange'] | lower }}
