@@ -264,7 +264,9 @@ default_net_config:
   committee_size: 21
   committee_approval: 0.67
   committee_phase_time: 5s
-  min_committee_phase_time: 300ms
+  committee_message_broadcast_interval: 100ms
+  committee_request_interval: 300ms
+  min_committee_phase_time: 1s
   committee_precommit_wait: 0.8
   committee_time_adjustment: 1.1
 
