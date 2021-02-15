@@ -11,6 +11,33 @@ catapult_group: ubuntu
 catapult_server_repository_name: techbureau/catapult-server
 catapult_server_docker_tag: gcc-0.1.0.2
 
+# allow users to update specific config to reduce time
+# e.g. ansible-playbook -i inv.yaml \
+# playbooks/sirius-chain.yml \
+# --extra-vars "sirius_chain_configs=['config-network.properties','peers-p2p.json']"
+sirius_chain_configs:
+  - config-database.properties
+  - config-extensions-broker.properties
+  - config-extensions-recovery.properties
+  - config-extensions-server.properties
+  - config-harvesting.properties
+  - config-immutable.properties
+  - config-inflation.properties
+  - config-logging-broker.properties
+  - config-logging-recovery.properties
+  - config-logging-server.properties
+  - config-messaging.properties
+  - config-network.properties
+  - config-networkheight.properties
+  - config-node.properties
+  - config-pt.properties
+  - config-task.properties
+  - config-timesync.properties
+  - config-user.properties
+  - peers-api.json
+  - peers-p2p.json
+  - supported-entities.json
+
 #------------------------------------
 # docker-compose.yml.j2
 #------------------------------------

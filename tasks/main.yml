@@ -63,28 +63,7 @@
     owner: "{{ catapult_user }}"
     group: "{{ catapult_group }}"
     mode: u+r
-  with_items:
-  - config-database.properties
-  - config-extensions-broker.properties
-  - config-extensions-recovery.properties
-  - config-extensions-server.properties
-  - config-harvesting.properties
-  - config-immutable.properties
-  - config-inflation.properties
-  - config-logging-broker.properties
-  - config-logging-recovery.properties
-  - config-logging-server.properties
-  - config-messaging.properties
-  - config-network.properties
-  - config-networkheight.properties
-  - config-node.properties
-  - config-pt.properties
-  - config-task.properties
-  - config-timesync.properties
-  - config-user.properties
-  - peers-api.json
-  - peers-p2p.json
-  - supported-entities.json
+  with_items: "{{sirius_chain_configs}}"
 
 #------------------------------------------------
 # If running Catapult-Server PEER Mode
