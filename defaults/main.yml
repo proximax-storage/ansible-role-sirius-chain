@@ -290,10 +290,10 @@ default_net_config:
 
   committee_min_greed: 0.1
 
-  committee_initial_activity: 0.367976785
-  committee_activity_delta: 0.00001
-  activity_committee_cosigned_delta: 0.01
-  activity_committee_not_cosigned_delta: 0.02
+  committee_initial_activity: "0.367976785"
+  committee_activity_delta: "0.00001"
+  activity_committee_cosigned_delta: "0.01"
+  activity_committee_not_cosigned_delta: "0.02"
 
   #[plugin:catapult.plugins.config]
   max_block_chain_config_size: 1MB
