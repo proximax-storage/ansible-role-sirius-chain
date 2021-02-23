@@ -36,10 +36,11 @@ enableWeightedVoting = {{ combined_net_config['enable_weighted_voting'] | lower 
 committeeSize = {{ combined_net_config['committee_size'] }}
 committeeApproval = {{ combined_net_config['committee_approval'] }}
 committeePhaseTime = {{ combined_net_config['committee_phase_time'] }}
+
+minCommitteePhaseTime = {{ combined_net_config['min_committee_phase_time'] }}
+maxCommitteePhaseTime = {{ combined_net_config['max_committee_phase_time'] }}
 committeeMessageBroadcastInterval = {{ combined_net_config['committee_message_broadcast_interval'] }}
 committeeRequestInterval = {{ combined_net_config['committee_request_interval'] }}
-minCommitteePhaseTime = {{ combined_net_config['min_committee_phase_time'] }}
-committeePrecommitWait = {{ combined_net_config['committee_precommit_wait'] }}
 committeeTimeAdjustment = {{ combined_net_config['committee_time_adjustment'] }}
 
 [plugin:catapult.plugins.accountlink]
