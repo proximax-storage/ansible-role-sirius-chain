@@ -10,8 +10,8 @@
   "clientPrivateKey": "{{ catapult_rest_client_private_key }}",
   "extensions": ["accountLink", "accountProperties", "aggregate", "exchange", "config", "lock", "metadata", "mosaic", "multisig", "namespace", "operation", "receipts", "richlist", "service", "supercontract", "transfer", "upgrade"],
   "db": {
-    "url": "mongodb://db:27017/",
-    "name": "catapult",
+    "url": "{{db_config['database_uri']}}",
+    "name": "{{db_config['database_name']}}",
     "pageSizeMin": 10,
     "pageSizeMax": 100,
     "pageSizeStep": 25,
