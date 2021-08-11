@@ -96,6 +96,7 @@ default_db_config:
   catapult_mongo_plugins_service: true
   catapult_mongo_plugins_operation: true
   catapult_mongo_plugins_supercontract: true
+  catapult_mongo_plugins_metadata_nem: true
 
 #------------------------------------
 # config-extensions-broker.properties.j2 - default_ext_broker_config['key']
@@ -305,6 +306,8 @@ default_net_config:
   # mosaic_rental_fee_sink_public_key: -- this should be set per environment
   mosaic_rental_fee: 10'000'000'000
 
+  levy_enabled: true
+
   # [plugin:catapult.plugins.multisig]
   max_multisig_depth: 3
   max_cosigners_per_account: 10
@@ -352,6 +355,9 @@ default_net_config:
   # [plugin:catapult.plugins.supercontract]
   plugin_supercontract_enabled: false
   max_super_contract_on_drive: 10
+
+  #[plugin:catapult.plugins.metadata_nem]
+  metadata_nem_max_value_size: 1024
 
 #------------------------------------
 # config-networkheight.properties.j2 - height_config['key']
