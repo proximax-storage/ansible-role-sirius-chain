@@ -88,7 +88,7 @@ maxMosaicDivisibility = {{ combined_net_config['max_mosaic_divisibility'] }}
 mosaicRentalFeeSinkPublicKey = {{ combined_net_config['mosaic_rental_fee_sink_public_key'] }}
 mosaicRentalFee = {{ combined_net_config['mosaic_rental_fee'] }}
 
-levyEnabled = {{ combined_net_config['levy_enabled'] }}
+levyEnabled = {{ combined_net_config['levy_enabled'] | lower }}
 
 [plugin:catapult.plugins.multisig]
 
