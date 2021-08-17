@@ -357,6 +357,7 @@ default_net_config:
   max_super_contract_on_drive: 10
 
   #[plugin:catapult.plugins.metadata_nem]
+  plugin_metadata_nem_enabled: false
   metadata_nem_max_value_size: 1024
 
 #------------------------------------
