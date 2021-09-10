@@ -65,6 +65,25 @@ loki_labels: 'env=staging,node=localhost'
 #------------------------------------
 #catapult_rest_client_private_key: 0000000000000000000000000000000000000000000000000000000000000000
 #catapult_api_node_public_key: 0000000000000000000000000000000000000000000000000000000000000000
+rest_extensions: 
+- accountLink
+- accountProperties
+- aggregate
+- exchange
+- config
+- lock
+- metadata
+- metadata_nem
+- mosaic
+- multisig
+- namespace
+- operation
+- receipts
+- richlist
+- service
+- supercontract
+- transfer
+- upgrade
 rest_db_url: mongodb://127.0.0.1:27017/  #note: https://github.com/proximax-storage/js-xpx-chain-rest/blob/69dc972040dad37d1187c0b95a595f9c55cd0787/rest/src/db/connector.js#L26
 rest_db_name: catapult
 catapult_rest_cors: '*'
