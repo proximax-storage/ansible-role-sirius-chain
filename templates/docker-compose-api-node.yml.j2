@@ -44,6 +44,6 @@ services:
     - "3000:3000"
     volumes:
     - {{ catapult_rest_user_config }}/rest.json:/node_modules/catapult-api-rest/resources/rest.json
-    command: ash -c "yarn start"
+    command: "{{ rest_gateway_command }}"
     depends_on:
     - catapult-api-node
