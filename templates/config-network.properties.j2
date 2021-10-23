@@ -144,6 +144,6 @@ downloadCacheEnabled = {{ combined_net_config['download_cache_enabled'] | lower 
 enabled = {{ combined_net_config['plugin_supercontract_enabled'] | lower }}
 maxSuperContractsOnDrive = {{ combined_net_config['max_super_contract_on_drive'] }}
 
-[plugin:catapult.plugins.metadata_nem]
-enabled = {{ combined_net_config['plugin_metadata_nem_enabled'] | lower }}
-maxValueSize = {{ combined_net_config['metadata_nem_max_value_size'] }}
+[plugin:catapult.plugins.metadata_v2]
+enabled = {{ combined_net_config['plugin_metadata_v2_enabled'] | lower }}
+maxValueSize = {{ combined_net_config['metadata_v2_max_value_size'] }}

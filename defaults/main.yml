@@ -74,7 +74,7 @@ rest_extensions:
 - config
 - lock
 - metadata
-- metadata_nem
+- metadata_v2
 - mosaic
 - multisig
 - namespace
@@ -116,7 +116,7 @@ default_db_config:
   catapult_mongo_plugins_service: true
   catapult_mongo_plugins_operation: true
   catapult_mongo_plugins_supercontract: true
-  catapult_mongo_plugins_metadata_nem: true
+  catapult_mongo_plugins_metadata_v2: true
 
 #------------------------------------
 # config-extensions-broker.properties.j2 - default_ext_broker_config['key']
@@ -376,9 +376,9 @@ default_net_config:
   plugin_supercontract_enabled: false
   max_super_contract_on_drive: 10
 
-  #[plugin:catapult.plugins.metadata_nem]
-  plugin_metadata_nem_enabled: false
-  metadata_nem_max_value_size: 1024
+  #[plugin:catapult.plugins.metadata_v2]
+  plugin_metadata_v2_enabled: false
+  metadata_v2_max_value_size: 1024
 
 #------------------------------------
 # config-networkheight.properties.j2 - height_config['key']
