@@ -483,6 +483,10 @@ default_task_config:
   connect_peers_task_service_sync_start_delay: 10ms
   connect_peers_task_service_sync_repeat_delay: 1m
 
+  # [connect peers task for service WeightedVoting]
+  connect_peers_task_service_weightedvoting_start_delay: 10ms
+  connect_peers_task_service_weightedvoting_repeat_delay: 1m
+
   # [harvesting task]
   harvesting_task_start_delay: 30s
   harvesting_task_repeat_delay: 1s
