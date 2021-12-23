@@ -269,6 +269,10 @@ default_net_config:
   committee_message_broadcast_interval: 100ms
   committee_request_interval: 300ms
   committee_time_adjustment: 1.1
+  committee_end_sync_approval: 0.45
+  committee_base_total_importance: 100
+  committee_not_running_contribution: 0.5
+
 
   # [plugin:catapult.plugins.accountlink]
   dummy: to trigger plugin load
