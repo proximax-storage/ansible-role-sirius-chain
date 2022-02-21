@@ -264,10 +264,11 @@ default_net_config:
   committee_size: 21
   committee_approval: 0.67
   committee_phase_time: 5s
-  min_committee_phase_time: 300ms
+  min_committee_phase_time: 375ms
   max_committee_phase_time: 1m
-  committee_message_broadcast_interval: 100ms
+  committee_silence_interval: 100ms
   committee_request_interval: 300ms
+  committee_chain_height_request_interval: 30s
   committee_time_adjustment: 1.1
   committee_end_sync_approval: 0.45
   committee_base_total_importance: 100
