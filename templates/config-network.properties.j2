@@ -117,6 +117,8 @@ maxMosaicDivisibility = {{ combined_net_config['max_mosaic_divisibility'] }}
 mosaicRentalFeeSinkPublicKey = {{ combined_net_config['mosaic_rental_fee_sink_public_key'] }}
 mosaicRentalFee = {{ combined_net_config['mosaic_rental_fee'] }}
 
+levyEnabled = {{ combined_net_config['levy_enabled'] | lower }}
+
 [plugin:catapult.plugins.multisig]
 
 maxMultisigDepth = {{ combined_net_config['max_multisig_depth'] }}
@@ -170,3 +172,7 @@ downloadCacheEnabled = {{ combined_net_config['download_cache_enabled'] | lower 
 [plugin:catapult.plugins.supercontract]
 enabled = {{ combined_net_config['plugin_supercontract_enabled'] | lower }}
 maxSuperContractsOnDrive = {{ combined_net_config['max_super_contract_on_drive'] }}
+
+[plugin:catapult.plugins.metadata_v2]
+enabled = {{ combined_net_config['plugin_metadata_v2_enabled'] | lower }}
+maxValueSize = {{ combined_net_config['metadata_v2_max_value_size'] }}

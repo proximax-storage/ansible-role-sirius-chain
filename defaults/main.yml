@@ -49,6 +49,7 @@ catapult_ports: [7900, 7901, 7902, 7903]
 #------------------------------------
 mongodb_data_directory: /opt/catapult-config/mongodata
 catapult_rest_user_config: /opt/catapult-config/restuserconfig
+rest_gateway_command: "node src/index.js"
 
 #------------------------------------
 # docker logging driver
@@ -65,8 +66,29 @@ loki_labels: 'env=staging,node=localhost'
 #------------------------------------
 #catapult_rest_client_private_key: 0000000000000000000000000000000000000000000000000000000000000000
 #catapult_api_node_public_key: 0000000000000000000000000000000000000000000000000000000000000000
+rest_extensions: 
+- accountLink
+- accountProperties
+- aggregate
+- exchange
+- config
+- lock
+- metadata
+- metadata_v2
+- mosaic
+- multisig
+- namespace
+- operation
+- receipts
+- richlist
+- service
+- supercontract
+- transfer
+- upgrade
+rest_db_url: mongodb://127.0.0.1:27017/  #note: https://github.com/proximax-storage/js-xpx-chain-rest/blob/69dc972040dad37d1187c0b95a595f9c55cd0787/rest/src/db/connector.js#L26
+rest_db_name: catapult
 catapult_rest_cors: '*'
-throttling_burst: 500
+throttling_burst: 10000
 throttling_rate: 100
 
 #------------------------------------
@@ -95,6 +117,7 @@ default_db_config:
   catapult_mongo_plugins_service: true
   catapult_mongo_plugins_operation: true
   catapult_mongo_plugins_supercontract: true
+  catapult_mongo_plugins_metadata_v2: true
 
 #------------------------------------
 # config-extensions-broker.properties.j2 - default_ext_broker_config['key']
@@ -334,6 +357,8 @@ default_net_config:
   # mosaic_rental_fee_sink_public_key: -- this should be set per environment
   mosaic_rental_fee: 10'000'000'000
 
+  levy_enabled: true
+
   # [plugin:catapult.plugins.multisig]
   max_multisig_depth: 3
   max_cosigners_per_account: 10
@@ -381,6 +406,10 @@ default_net_config:
   # [plugin:catapult.plugins.supercontract]
   plugin_supercontract_enabled: false
   max_super_contract_on_drive: 10
+
+  #[plugin:catapult.plugins.metadata_v2]
+  plugin_metadata_v2_enabled: false
+  metadata_v2_max_value_size: 1024
 
 #------------------------------------
 # config-networkheight.properties.j2 - height_config['key']

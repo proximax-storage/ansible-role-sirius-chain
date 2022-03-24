@@ -8,10 +8,13 @@
   "crossDomainHttpMethods": ["GET", "POST", "PUT", "OPTIONS"],
   "cors": "{{ catapult_rest_cors }}",
   "clientPrivateKey": "{{ catapult_rest_client_private_key }}",
-  "extensions": ["accountLink", "accountProperties", "aggregate", "exchange", "config", "lock", "metadata", "mosaic", "multisig", "namespace", "operation", "receipts", "richlist", "service", "supercontract", "transfer", "upgrade"],
+  "extensions": [{% for ext in rest_extensions -%}
+                  "{{ext}}"
+                  {%- if not loop.last -%},{%- endif -%}
+                 {%- endfor %}],
   "db": {
-    "url": "mongodb://db:27017/",
-    "name": "catapult",
+    "url": "{{ rest_db_url }}",
+    "name": "{{ rest_db_name }}",
     "pageSizeMin": 10,
     "pageSizeMax": 100,
     "pageSizeStep": 25,
