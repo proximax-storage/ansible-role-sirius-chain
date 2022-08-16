@@ -71,6 +71,7 @@ rest_extensions:
 - accountProperties
 - aggregate
 - exchange
+- committee
 - config
 - lock
 - metadata
@@ -117,6 +118,7 @@ default_db_config:
   catapult_mongo_plugins_operation: true
   catapult_mongo_plugins_supercontract: true
   catapult_mongo_plugins_metadata_v2: true
+  catapult_mongo_plugins_committee: true
 
 #------------------------------------
 # config-extensions-broker.properties.j2 - default_ext_broker_config['key']
@@ -277,6 +279,24 @@ default_net_config:
   harvest_beneficiary_percentage: 10
   block_prune_interval: 360
   max_transactions_per_block: 200'000
+  enable_unconfirmed_transaction_min_fee_validation: false
+
+  enable_undo_block: true
+  enable_block_sync: true
+
+  enable_weighted_voting: false
+  committee_size: 3
+  committee_approval: 0.67
+  committee_phase_time: 5s
+  min_committee_phase_time: 3750ms
+  max_committee_phase_time: 1m
+  committee_silence_interval: 100ms
+  committee_request_interval: 500ms
+  committee_chain_height_request_interval: 30s
+  committee_time_adjustment: 1.1
+  committee_end_sync_approval: 0.45
+  committee_base_total_importance: 100
+  committee_not_running_contribution: 0.5
 
   # [plugin:catapult.plugins.accountlink]
   dummy: to trigger plugin load
@@ -379,6 +399,14 @@ default_net_config:
   #[plugin:catapult.plugins.metadata_v2]
   plugin_metadata_v2_enabled: false
   metadata_v2_max_value_size: 1024
+
+  # [plugin:catapult.plugins.committee]
+  plugin_committee_enabled: false
+  plugin_committee_min_greed: 0.1
+  plugin_committee_initial_activity: 0.367976785
+  plugin_committee_activity_delta: 0.00001
+  activity_committee_cosigned_delta: 0.01
+  activity_committee_not_cosigned_delta: 0.02
 
 #------------------------------------
 # config-networkheight.properties.j2 - height_config['key']
