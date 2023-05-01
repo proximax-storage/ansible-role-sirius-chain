@@ -1,12 +1,14 @@
 version: "3.6"
 services:
+{% if node_config['localnode_roles'] is not defined or node_config['localnode_roles'] != "Api" %}
   catapult:
     # Downloads Catapult Server from specified Docker repo
-    image: {{ catapult_server_repository_name }}:{{ catapult_server_docker_tag }}
+    image: "{{ catapult_server_repository_name }}:{{ catapult_server_docker_tag }}"
     ports:
-      - {{ catapult_ports[2] }}:7902
-      - {{ catapult_ports[0] }}:7900
-      - {{ catapult_ports[1] }}:7901
+      {% for item in docker_compose_ports -%}
+      - "{{ item }}"
+      {% endfor %}
+      
     volumes:
       - {{ catapult_config_directory }}:/chainconfig
       - {{ catapult_data_directory }}:/data:rw
@@ -19,3 +21,52 @@ services:
         
     restart: on-failure:3
     entrypoint: /chainconfig/sc-p2p-entrypoint.sh
+{% else %}
+  db:
+    image: mongo:4.4-bionic
+    command: bash -c "mongod --dbpath=/dbdata --bind_ip=db"
+    volumes:
+    - /opt/catapult-config/mongodata:/dbdata:rw
+
+  init-db:
+    image: mongo:4.4-bionic
+    command:  bash -c "/bin/bash /userconfig/mongors.sh"
+    volumes:
+    - "{{ mongodb_data_directory }}:/dbdata:rw"
+    - "{{ catapult_scripts_directory }}/mongo:/userconfig/:ro"
+    depends_on:
+    - db
+
+  catapult-api-node:
+    # Downloads Catapult Server from specified Docker repo
+    image: "{{ catapult_server_repository_name }}:{{ catapult_server_docker_tag }}"
+    {% for item in docker_compose_ports -%}
+      - "{{ item }}"
+      {% endfor %}
+      
+    volumes:
+      - "{{ catapult_config_directory }}:/chainconfig"
+      - "{{ catapult_data_directory }}:/data:rw"
+      - "{{ catapult_logs_directory }}:/logs:rw"
+    {% if loki_enabled %}logging:
+      driver: loki
+      options:
+        loki-url: "https://{{ loki_auth_username }}:{{ loki_auth_password}}@{{ loki_url}}"
+        loki-external-labels: '{{ loki_labels }}'{% endif %}
+
+    restart: on-failure:3
+    entrypoint: /bin/bash
+    command: -c "rm -f /data/server.lock && /sirius/bin/sirius.bc /chainconfig"
+    depends_on:
+    - db
+
+  rest-gateway:
+    image: "{{ catapult_rest_repository_name }}:{{ catapult_rest_docker_tag }}"
+    ports:
+    - "3000:3000"
+    volumes:
+    - "{{ catapult_rest_user_config }}/rest.json:/node_modules/catapult-api-rest/resources/rest.json"
+    command: "node src/index.js"
+    depends_on:
+    - catapult-api-node
+{% endif %}

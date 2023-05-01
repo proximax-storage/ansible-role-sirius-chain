@@ -67,9 +67,6 @@
     mode: u+r
   with_items: "{{sirius_chain_configs}}"
 
-#------------------------------------------------
-# If running Catapult-Server PEER Mode
-#------------------------------------------------
 - name: Docker compose file for running Sirius Chain Server container
   template:
     src: "docker-compose.yml.j2"
@@ -77,7 +74,6 @@
     owner: "{{ catapult_user }}"
     group: "{{ catapult_group }}"
     mode: u+r
-  when: node_config['localnode_roles'] is not defined or node_config['localnode_roles'] != "Api"
 
 - name: Copy entrypoint script
   template:
@@ -131,15 +127,6 @@
   - "mongo/mongoCatapultConfigDbPrepare.js"
   - "mongo/mongoCatapultUpgradeDbPrepare.js"
 
-  when: node_config['localnode_roles'] is defined and node_config['localnode_roles'] == "Api"
-
-- name: Sirius Chain API Node - Docker compose file for Sirius Chain Server API Node
-  template:
-    src: "docker-compose-api-node.yml.j2"
-    dest: "{{ catapult_config_directory }}/docker-compose.yml"
-    owner: "{{ catapult_user }}"
-    group: "{{ catapult_group }}"
-    mode: u+r
   when: node_config['localnode_roles'] is defined and node_config['localnode_roles'] == "Api"
 
 - name: Sirius Chain API Node - generate Sirius Chain REST JSON configuration file
