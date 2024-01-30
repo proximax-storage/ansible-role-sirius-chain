@@ -6,7 +6,8 @@
     "publicKey": "{{ peer['public_key'] }}",
     "endpoint": {
       "host": "{{ peer['endpoint.host'] }}",
-      "port": {{ peer['endpoint.port'] }}
+      "port": {{ peer['endpoint.port'] }},
+      "dbrbPort": {{ peer['endpoint.dbrbPort'] }}
     },
     "metadata": {
       "name": "{{ peer['metadata.name'] }}",

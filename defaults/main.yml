@@ -8,15 +8,29 @@ catapult_logs_directory: /opt/catapult-config/logs
 catapult_user: ubuntu
 catapult_group: ubuntu
 
-catapult_server_repository_name: techbureau/catapult-server
-catapult_server_docker_tag: gcc-0.1.0.2
+catapult_server_repository_name: proximax/proximax-sirius-chain
+catapult_server_docker_tag: v1.5.0-bullseye
+docker_compose_ports:
+  - 7900:7900
+  - 7901:7901
+  - 7902:7902
+  - 7903:7903
+
+# proximax-catapult-rest
+catapult_rest_repository_name: proximax/proximax-sirius-rest
+catapult_rest_docker_tag: v0.10.0
+rest_gateway_command: "node src/index.js"
+rest_ports:
+  - 3000:3000
 
 # allow users to update specific config to reduce time
 # e.g. ansible-playbook -i inv.yaml \
 # playbooks/sirius-chain.yml \
 # --extra-vars "sirius_chain_configs=['config-network.properties','peers-p2p.json']"
+# config-network.properties and supported-entities.json has grown too complex for ansible template.  It is easier to use ansible copy
 sirius_chain_configs:
   - config-database.properties
+  - config-dbrb.properties
   - config-extensions-broker.properties
   - config-extensions-recovery.properties
   - config-extensions-server.properties
@@ -27,7 +41,6 @@ sirius_chain_configs:
   - config-logging-recovery.properties
   - config-logging-server.properties
   - config-messaging.properties
-  - config-network.properties
   - config-networkheight.properties
   - config-node.properties
   - config-pt.properties
@@ -36,7 +49,7 @@ sirius_chain_configs:
   - config-user.properties
   - peers-api.json
   - peers-p2p.json
-  - supported-entities.json
+
 
 #------------------------------------
 # docker-compose.yml.j2
@@ -97,28 +110,21 @@ throttling_rate: 100
 #------------------------------------
 db_config: {}
 default_db_config:
-  database_uri: mongodb://127.0.0.1:27017
+  database_uri: mongodb://db:27017
   database_name: catapult
   max_writer_threads: 8
   catapult_mongo_plugins_accountlink: true
   catapult_mongo_plugins_aggregate: true
   catapult_mongo_plugins_config: true
-  catapult_mongo_plugins_contract: true
-  catapult_mongo_plugins_exchange: true
   catapult_mongo_plugins_lockhash: true
   catapult_mongo_plugins_locksecret: true
-  catapult_mongo_plugins_metadata: true
   catapult_mongo_plugins_mosaic: true
   catapult_mongo_plugins_multisig: true
   catapult_mongo_plugins_namespace: true
   catapult_mongo_plugins_property: true
   catapult_mongo_plugins_transfer: true
   catapult_mongo_plugins_upgrade: true
-  catapult_mongo_plugins_service: true
-  catapult_mongo_plugins_operation: true
-  catapult_mongo_plugins_supercontract: true
   catapult_mongo_plugins_metadata_v2: true
-  catapult_mongo_plugins_committee: true
 
 #------------------------------------
 # config-extensions-broker.properties.j2 - default_ext_broker_config['key']
@@ -159,7 +165,7 @@ default_ext_server_config:
   extension_eventsource: true
   extension_harvesting: true
   extension_syncsource: true
-
+  extension_fastfinality: false
   # common extensions
   extension_diagnostics: true
   extension_hashcache: true
@@ -171,6 +177,7 @@ default_ext_server_config:
   extension_timesync: true
   extension_transactionsink: true
   extension_unbondedpruning: true
+  extension_storage: false
 
 #------------------------------------
 # config-harvesting.properties.j2 - hv_config['key']
@@ -230,7 +237,7 @@ default_log_config:
   file_directory: /logs
   file_pattern: /logs/catapult_server_%4N.log
   file_rotation_size: 25MB
-  file_max_total_size: 2500MB
+  file_max_total_size: 250MB
   file_min_free_space: 100MB
 
 #------------------------------------
@@ -422,6 +429,7 @@ node_config: {}
 default_node_config:
   node_port: 7900
   node_api_port: 7901
+  node_dbrb_port: 7903
   should_allow_address_reuse: false
   should_use_single_thread_pool: false
   should_use_cache_database_storage: true

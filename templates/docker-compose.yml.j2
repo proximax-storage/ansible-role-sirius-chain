@@ -10,9 +10,10 @@ services:
       {% endfor %}
       
     volumes:
-      - {{ catapult_config_directory }}:/chainconfig
-      - {{ catapult_data_directory }}:/data:rw
-      - {{ catapult_logs_directory }}:/logs:rw
+      - "{{ catapult_config_directory }}:/chainconfig"
+      - "{{ catapult_data_directory }}:/data:rw"
+      - "{{ catapult_logs_directory }}:/logs:rw"
+      - "{{ catapult_config_directory }}/replicator_service_logs:/tmp/replicator_service_logs:rw"
     {% if loki_enabled %}logging:
       driver: loki
       options:
@@ -20,7 +21,6 @@ services:
         loki-external-labels: '{{ loki_labels }}'{% endif %}
         
     restart: on-failure:3
-    entrypoint: /chainconfig/sc-p2p-entrypoint.sh
 {% else %}
   db:
     image: mongo:4.4-bionic
@@ -40,7 +40,8 @@ services:
   catapult-api-node:
     # Downloads Catapult Server from specified Docker repo
     image: "{{ catapult_server_repository_name }}:{{ catapult_server_docker_tag }}"
-    {% for item in docker_compose_ports -%}
+    ports:
+      {% for item in docker_compose_ports -%}
       - "{{ item }}"
       {% endfor %}
       
@@ -48,6 +49,7 @@ services:
       - "{{ catapult_config_directory }}:/chainconfig"
       - "{{ catapult_data_directory }}:/data:rw"
       - "{{ catapult_logs_directory }}:/logs:rw"
+      - "{{ catapult_config_directory }}/replicator_service_logs:/tmp/replicator_service_logs:rw"
     {% if loki_enabled %}logging:
       driver: loki
       options:
@@ -63,10 +65,13 @@ services:
   rest-gateway:
     image: "{{ catapult_rest_repository_name }}:{{ catapult_rest_docker_tag }}"
     ports:
-    - "3000:3000"
+      {% for item in rest_ports -%}
+      - "{{ item }}"
+      {% endfor %}
+
     volumes:
     - "{{ catapult_rest_user_config }}/rest.json:/node_modules/catapult-api-rest/resources/rest.json"
-    command: "node src/index.js"
+    command: "{{ rest_gateway_command }}"
     depends_on:
     - catapult-api-node
 {% endif %}
