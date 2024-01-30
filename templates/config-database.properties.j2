@@ -1,4 +1,4 @@
-{% set combined_db_config = default_db_config | combine(db_config, recursive=false) -%}
+{% set combined_db_config = default_db_config | combine(db_config, recursive=true) -%}
 [database]
 
 databaseUri = {{ combined_db_config['database_uri'] }}

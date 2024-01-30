@@ -116,15 +116,26 @@ default_db_config:
   catapult_mongo_plugins_accountlink: true
   catapult_mongo_plugins_aggregate: true
   catapult_mongo_plugins_config: true
+  catapult_mongo_plugins_contract: false
+  catapult_mongo_plugins_exchange: false
+  catapult_mongo_plugins_exchangesda: false
   catapult_mongo_plugins_lockhash: true
   catapult_mongo_plugins_locksecret: true
+  catapult_mongo_plugins_metadata: false
   catapult_mongo_plugins_mosaic: true
   catapult_mongo_plugins_multisig: true
   catapult_mongo_plugins_namespace: true
   catapult_mongo_plugins_property: true
   catapult_mongo_plugins_transfer: true
   catapult_mongo_plugins_upgrade: true
+  catapult_mongo_plugins_service: false
+  catapult_mongo_plugins_operation: false
+  catapult_mongo_plugins_supercontract: false
   catapult_mongo_plugins_metadata_v2: true
+  catapult_mongo_plugins_committee: false
+  catapult_mongo_plugins_dbrb: false
+  catapult_mongo_plugins_liquidityprovider: false
+  catapult_mongo_plugins_storage: false
 
 #------------------------------------
 # config-extensions-broker.properties.j2 - default_ext_broker_config['key']
