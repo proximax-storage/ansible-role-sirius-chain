@@ -14,6 +14,7 @@ extension.zeromq = {{ combined_ext_server_config['extension_zeromq'] | lower }}
 extension.eventsource = {{ combined_ext_server_config['extension_eventsource'] | lower }}
 extension.harvesting = {{ combined_ext_server_config['extension_harvesting'] | lower }}
 extension.syncsource = {{ combined_ext_server_config['extension_syncsource'] | lower }}
+extension.fastfinality = {{ combined_ext_server_config['extension_fastfinality'] | lower }}
 
 # common extensions
 extension.diagnostics = {{ combined_ext_server_config['extension_diagnostics'] | lower }}
@@ -26,3 +27,4 @@ extension.sync = {{ combined_ext_server_config['extension_sync'] | lower }}
 extension.timesync = {{ combined_ext_server_config['extension_timesync'] | lower }}
 extension.transactionsink = {{ combined_ext_server_config['extension_transactionsink'] | lower }}
 extension.unbondedpruning = {{ combined_ext_server_config['extension_unbondedpruning'] | lower }}
+extension.storage = {{ combined_ext_server_config['extension_storage'] | lower }}
