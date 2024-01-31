@@ -123,6 +123,7 @@
   - "mongo/mongoNamespaceDbPrepare.js"
   - "mongo/mongoReputationDbPrepare.js"
   - "mongo/mongors.sh"
+  - "mongo/mongoSdaExchangeDbPrepare.js"
   when: node_config['localnode_roles'] is defined and node_config['localnode_roles'] == "Api"
 
 - name: Sirius Chain API Node - generate Sirius Chain REST JSON configuration file
