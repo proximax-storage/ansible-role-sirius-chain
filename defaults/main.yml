@@ -69,22 +69,24 @@ loki_labels: 'env=staging,node=localhost'
 rest_extensions: 
 - accountLink
 - accountProperties
+- accountrestriction
 - aggregate
 - exchange
 - config
 - lock
+- lockfund
 - metadata
 - metadata_v2
 - mosaic
+- mosaicrestriction
 - multisig
 - namespace
-- operation
+- nodeKeyLink
 - receipts
 - richlist
-- service
-- supercontract
 - transfer
 - upgrade
+- vrfKeyLink
 rest_db_url: mongodb://127.0.0.1:27017/  #note: https://github.com/proximax-storage/js-xpx-chain-rest/blob/69dc972040dad37d1187c0b95a595f9c55cd0787/rest/src/db/connector.js#L26
 rest_db_name: catapult
 catapult_rest_cors: '*'
@@ -117,6 +119,9 @@ default_db_config:
   catapult_mongo_plugins_operation: true
   catapult_mongo_plugins_supercontract: true
   catapult_mongo_plugins_metadata_v2: true
+  catapult_mongo_plugins_lockfund: false
+  catapult_mongo_plugins_restrictionaccount: false
+  catapult_mongo_plugins_restrictionmosaic: false
 
 #------------------------------------
 # config-extensions-broker.properties.j2 - default_ext_broker_config['key']
@@ -175,10 +180,13 @@ default_ext_server_config:
 #------------------------------------
 hv_config: {}
 default_hv_config:
-  harvest_key:
+#  harvest_key:
+#  harvester_public_key: 
+  harvester_vrf_private_Key: '0000000000000000000000000000000000000000000000000000000000000000'
   beneficiary: '0000000000000000000000000000000000000000000000000000000000000000'
   is_auto_harvesting_enabled: false
   max_unlocked_accounts: 5
+  delegate_prioritization_policy: Importance
 
 #------------------------------------
 # config-immutable.properties.j2 - net_config['key']
@@ -543,6 +551,7 @@ default_user_config:
 #  node_boot_private_key: 0000000000000000000000000000000000000000000000000000000000000000
   data_directory: /data
   plugins_directory:
+  certificate_directory: /certificate
 
 # entrypoint script
 sirius_binary_path: /catapult/bin

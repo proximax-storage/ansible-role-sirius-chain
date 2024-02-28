@@ -3,8 +3,10 @@
 
 # keys should look like 3485d98efd7eb07adafcfd1a157d89de2796a95e780813c0258af3f5f84ed8cb
 bootKey = {{ combined_user_config['node_boot_private_key'] }}
+enableDelegatedHarvestersAutoDetection = {{ combined_user_config['enable_delegated_harvesters_auto_detection'] }}
 
 [storage]
 
 dataDirectory = {{ combined_user_config['data_directory'] }}
 pluginsDirectory = {{ combined_user_config['plugins_directory'] }}
+certificateDirectory = {{ combined_user_config['certificate_directory'] }}
