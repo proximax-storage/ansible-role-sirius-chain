@@ -2,6 +2,6 @@
 [messaging]
 
 subscriberPort = {{ combined_msg_config['subscriber_port'] }}
-enableTransactionStatements = {{ combined_msg_config['enable_transaction_statements'] }}
-enablePublicKeyStatements = {{ combined_msg_config['enable_public_key_statements'] }}
-enableBlockchainStateStatements = {{ combined_msg_config['enable_blockchain_state_statements'] }}
+enableTransactionStatements = {{ combined_msg_config['enable_transaction_statements'] | lower }}
+enablePublicKeyStatements = {{ combined_msg_config['enable_public_key_statements'] | lower }}
+enableBlockchainStateStatements = {{ combined_msg_config['enable_blockchain_state_statements'] | lower }}
