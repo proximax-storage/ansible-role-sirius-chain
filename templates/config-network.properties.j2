@@ -5,8 +5,12 @@ publicKey = {{ combined_net_config['nemesis_signer_public_key'] }}
 
 [chain]
 
+accountVersion = {{ combined_net_config['account_version'] }}
+
 blockGenerationTargetTime = {{ combined_net_config['block_generation_target_time'] }}
 blockTimeSmoothingFactor = {{ combined_net_config['block_time_smoothing_factor'] }}
+
+dockStakeRewardInterval = {{ combined_net_config['dock_stake_reward_interval'] }}
 
 greedDelta = {{ combined_net_config['greed_delta'] }}
 greedExponent = {{ combined_net_config['greed_exponent'] }}
@@ -28,6 +32,11 @@ harvestBeneficiaryPercentage = {{ combined_net_config['harvest_beneficiary_perce
 
 blockPruneInterval = {{ combined_net_config['block_prune_interval'] }}
 maxTransactionsPerBlock = {{ combined_net_config['max_transactions_per_block'] }}
+
+enableUnconfirmedTransactionMinFeeValidation = {{ combined_net_config['enable_unconfirmed_transaction_min_fee_validation'] | lower }}
+
+enableStateTracking = {{ combined_net_config['enable_state_tracking'] | lower }}
+properEffectiveBalanceCalculation = {{ combined_net_config['proper_effective_balance_calculation'] | lower }}
 
 [plugin:catapult.plugins.accountlink]
 
@@ -147,3 +156,20 @@ maxSuperContractsOnDrive = {{ combined_net_config['max_super_contract_on_drive']
 [plugin:catapult.plugins.metadata_v2]
 enabled = {{ combined_net_config['plugin_metadata_v2_enabled'] | lower }}
 maxValueSize = {{ combined_net_config['metadata_v2_max_value_size'] }}
+
+[plugin:catapult.plugins.globalstore]
+enabled = {{ combined_net_config['plugin_global_store_enabled'] | lower }}
+
+[plugin:catapult.plugins.restrictionmosaic]
+enabled = {{ combined_net_config['plugin_restriction_mosaic_enabled'] | lower }}
+maxMosaicRestrictionValues = {{ combined_net_config['max_mosaic_restriction_values'] }}
+
+[plugin:catapult.plugins.restrictionaccount]
+enabled = {{ combined_net_config['plugin_restriction_account_enabled'] | lower }}
+maxAccountRestrictionValues = {{ combined_net_config['max_account_restriction_values'] }}
+
+[plugin:catapult.plugins.lockfund]
+enabled = {{ combined_net_config['plugin_lockfund_enabled'] | lower }}
+minRequestUnlockCooldown = {{ combined_net_config['lockfund_min_request_unlock_cooldown'] }}
+maxMosaicsSize = {{ combined_net_config['lockfund_max_mosaic_size'] }}
+maxUnlockRequests = {{ combined_net_config['lockfund_max_unlock_requests'] }}

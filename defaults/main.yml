@@ -119,9 +119,9 @@ default_db_config:
   catapult_mongo_plugins_operation: true
   catapult_mongo_plugins_supercontract: true
   catapult_mongo_plugins_metadata_v2: true
-  catapult_mongo_plugins_lockfund: false
-  catapult_mongo_plugins_restrictionaccount: false
-  catapult_mongo_plugins_restrictionmosaic: false
+  catapult_mongo_plugins_lockfund: true
+  catapult_mongo_plugins_restrictionaccount: true
+  catapult_mongo_plugins_restrictionmosaic: true
 
 #------------------------------------
 # config-extensions-broker.properties.j2 - default_ext_broker_config['key']
@@ -255,8 +255,12 @@ default_net_config:
 
 #  nemesis_signer_public_key: 0000000000000000000000000000000000000000000000000000000000000000
 
+  account_version: 2
+  
   block_generation_target_time: 15s
   block_time_smoothing_factor: 3000
+
+  dock_stake_reward_interval: 100
 
   greed_delta: 0.5
   greed_exponent: 3.2
@@ -285,6 +289,11 @@ default_net_config:
   harvest_beneficiary_percentage: 10
   block_prune_interval: 360
   max_transactions_per_block: 200'000
+
+  enable_unconfirmed_transaction_min_fee_validation: true
+  
+  enable_state_trackin: true
+  proper_effective_balance_calculation: true
 
   # [plugin:catapult.plugins.accountlink]
   dummy: to trigger plugin load
@@ -387,6 +396,23 @@ default_net_config:
   #[plugin:catapult.plugins.metadata_v2]
   plugin_metadata_v2_enabled: false
   metadata_v2_max_value_size: 1024
+
+  #[plugin:catapult.plugins.globalstore]
+  plugin_global_store_enabled: true
+
+  #[plugin:catapult.plugins.restrictionmosaic]
+  plugin_restriction_mosaic_enabled: true
+  max_mosaic_restriction_values: 20
+
+  #[plugin:catapult.plugins.restrictionaccount]
+  plugin_restriction_account_enabled: true
+  max_account_restriction_values: 512
+
+  #[plugin:catapult.plugins.lockfund]
+  plugin_lockfund_enabled: true
+  lockfund_min_request_unlock_cooldown: 161280
+  lockfund_max_mosaic_size: 256
+  lockfund_max_unlock_requests: 10
 
 #------------------------------------
 # config-networkheight.properties.j2 - height_config['key']
